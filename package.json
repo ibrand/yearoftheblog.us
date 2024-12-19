@@ -1,0 +1,17 @@
+{
+  "name": "yearoftheblog.us",
+  "version": "1.0.0",
+  "description": "Year of The Blog Directory Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "rss-parser": "^3.13.0"
+  }
+}

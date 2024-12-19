@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year of the Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Year of the Blog</h1>
+    <ul class="ring">
+        <% feeds.forEach(feed => {
+            let d = new Date(feed.items[0]['pubDate'])
+        %>
+        <li>
+        <a href="<%= feed.link %>"><%= feed.title %></a>
+        <span>by <%= blogRegistry[feed.feedUrl] %></span>
+        <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
+        </li>
+        <%});%>
+    </ul>
+</body>
+</html>
