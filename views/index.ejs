@@ -8,16 +8,16 @@
 </head>
 <body>
     <h1>Year of the Blog</h1>
-    <ul class="ring">
+    <div class="ring">
         <% feeds.forEach(feed => {
             let d = new Date(feed.items[0]['pubDate'])
         %>
-        <li>
+        <div class="item">
         <a href="<%= feed.link %>"><%= feed.title %></a>
         <span>by <%= blogRegistry[feed.feedUrl] %></span>
         <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
-        </li>
+        </div>
         <%});%>
-    </ul>
+    </div>
 </body>
 </html>
