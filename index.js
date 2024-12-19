@@ -1,6 +1,7 @@
 // Importing modules
 const express = require("express");
 const rssParser = require('rss-parser');
+const blogRegistry = require('./config')
 
 const port = 80;
 const app = express();
@@ -13,11 +14,6 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
-
-const blogRegistry = {
-    'https://ohitsnice.bearblog.dev/atom/': 'Loney',
-    'https://weirddeer.bearblog.dev/atom/': 'Meg'
-}
 
 // Handling the get request
 app.get("/", (req, res) => {
