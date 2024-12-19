@@ -1,14 +1,13 @@
 .ring {
-    width: 50vw;
+    width: 60vh;
     height: 60vh;
-    /* margin: 40px auto; */
     border: 1px solid #000;
     display:grid;
     align-content: space-between;
     justify-content: space-evenly;
     border-radius: 50%;
     animation: spin 300s linear infinite;
-    margin-left: -30vw
+    margin-left: -20%;
 }
 
 .item {

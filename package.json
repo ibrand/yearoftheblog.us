@@ -4,7 +4,9 @@
   "description": "Year of The Blog Directory Site",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "./node_modules/nodemon/bin/nodemon.js index.js",
+    "start": "node index.js",
+    "deploy": "vercel"
   },
   "author": "",
   "license": "MIT",
