@@ -1,3 +1,7 @@
+:root {
+    --ring-diameter: 400;
+}
+
 .container {
     position: relative;
     width: 100vw;
@@ -5,42 +9,63 @@
     overflow: hidden;
 }
 
-.ring {
-    width: 60vh;
-    height: 60vh;
-    /* border: 1px solid #000; */
-    display:grid;
-    align-content: space-between;
-    justify-content: space-evenly;
-    border-radius: 50%;
-    animation: spin 300s linear infinite;
-    left: -18vw;
+.spin {
+    width: calc(var(--ring-diameter)*1px);
+    height: calc(var(--ring-diameter)*1px);
+    padding: 0;
     position: relative;
-    /* background: rgb(2,0,36); */
-    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(92,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+    top: 40px;
+    left: calc((var(--ring-diameter)/2)*-1px);
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
+    border-radius: 100%;
 }
 
-.listing {
-    width: 100%;
+/* these are the spinning elements */
+.spin .ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--ring-diameter)*1px);
+    height: calc(var(--ring-diameter)*1px);
+    border-radius: 100%;
+    -webkit-animation: spin-right 100s linear infinite;
+    animation: spin-right 100s linear infinite;
+}
+
+.spin .listing {
+    position: absolute;
+    top: -17px;
+    left: 125px;
     height: 30px;
-    margin-left: 95%;
+    width: 75px;
 }
 
-@keyframes spin {
-    0 {
-      transform: rotate(0deg);
-    }
+.list {
+
+}
+
+.list::before {
+    background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
+    width: 30px;
+    height: 100px;
+    content: '';
+    position: absolute;
+    padding: 0px;
+    left: -10px;
+    border-radius: 30%;
+}
+
+.list .listing {
+    margin-left: 0px;
+}
+
+/* ---------- Animation ---------- */
+@-webkit-keyframes spin-right {
     100% {
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
       transform: rotate(360deg);
     }
-}
-
-@media only screen and (max-width: 600px) {
-    .ring {
-        width: 60vh;
-        height: 60vh;
-        left: -40vh;
-        position: relative;
-    }
-}
+  }

@@ -10,17 +10,18 @@
 <body>
 <div class="container">
     <h1>Year of the Blog</h1>
-    <ul id="list" class="ring">
+    <ul id="list" class="spin">
         <% feeds.forEach(feed => {
             let d = new Date(feed.items[0]['pubDate'])
         %>
+        <div class="ring orbit-<%= blogRegistry[feed.feedUrl] %>">
         <li class="listing">
         <a href="<%= feed.link %>"><%= feed.title %></a>
         <span>by <%= blogRegistry[feed.feedUrl] %></span>
         <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
         </li>
-        <%});%>
-    </div>
+        </div>
+        <% });%>
 </div>
 </body>
 </html>
