@@ -16,9 +16,9 @@
         %>
         <div class="ring orbit-<%= blogRegistry[feed.feedUrl] %>">
         <li class="listing">
-        <a href="<%= feed.link %>"><%= feed.title %></a>
-        <span>by <%= blogRegistry[feed.feedUrl] %></span>
-        <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
+            <a href="<%= feed.link %>"><%= feed.title %></a>
+            <span class="author">by <%= blogRegistry[feed.feedUrl] %></span>
+            <p>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></p>
         </li>
         </div>
         <% });%>

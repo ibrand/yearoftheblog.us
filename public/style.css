@@ -1,5 +1,16 @@
 :root {
     --ring-diameter: 400;
+    --page-gutter: 30px;
+}
+
+body {
+    margin: 0px;
+}
+
+p {
+    /* resets */
+    padding: 0;
+    margin: 0;
 }
 
 .container {
@@ -7,6 +18,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    padding: var(--page-gutter);
 }
 
 .spin {
@@ -18,6 +30,7 @@
     left: calc((var(--ring-diameter)/2)*-1px);
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
     border-radius: 100%;
+    transition: all 1s linear;
 }
 
 /* these are the spinning elements */
@@ -34,25 +47,27 @@
 
 .spin .listing {
     position: absolute;
-    top: -17px;
+    top: -70px;
     left: 125px;
     height: 30px;
-    width: 75px;
+    width: 150px;
+    list-style: none;
 }
 
 .list {
-
+    padding: 5px;
+    list-style: none;
+    transition: all 1s linear;
 }
 
 .list::before {
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
-    width: 30px;
-    height: 100px;
+    width: var(--page-gutter);
+    height: 80%;
     content: '';
     position: absolute;
     padding: 0px;
     left: -10px;
-    border-radius: 30%;
 }
 
 .list .listing {
