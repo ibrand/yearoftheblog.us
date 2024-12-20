@@ -11,7 +11,8 @@ body {
     justify-content: space-evenly;
     border-radius: 50%;
     animation: spin 300s linear infinite;
-    margin-left: -30%;
+    left: -18vw;
+    position: relative;
 }
 
 .item {

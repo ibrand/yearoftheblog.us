@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "./node_modules/nodemon/bin/nodemon.js index.js",
     "start": "node index.js",
-    "deploy": "vercel"
+    "deploy": "vercel --prod"
   },
   "author": "",
   "license": "MIT",
