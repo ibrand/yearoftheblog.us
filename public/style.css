@@ -30,7 +30,6 @@ p {
     left: calc((var(--ring-diameter)/2)*-1px);
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
     border-radius: 100%;
-    transition: all 1s linear;
 }
 
 /* these are the spinning elements */
@@ -41,6 +40,7 @@ p {
     width: calc(var(--ring-diameter)*1px);
     height: calc(var(--ring-diameter)*1px);
     border-radius: 100%;
+    transform: rotate(-30deg);
     -webkit-animation: spin-right 100s linear infinite;
     animation: spin-right 100s linear infinite;
 }
@@ -57,7 +57,6 @@ p {
 .list {
     padding: 5px;
     list-style: none;
-    transition: all 1s linear;
 }
 
 .list::before {
