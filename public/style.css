@@ -1,4 +1,7 @@
-body {
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -27,5 +30,14 @@ body {
     }
     100% {
       transform: rotate(360deg);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .ring {
+        width: 60vh;
+        height: 60vh;
+        left: -40vh;
+        position: relative;
     }
 }
