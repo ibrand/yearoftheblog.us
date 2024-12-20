@@ -12,13 +12,17 @@
     <h1>Year of the Blog</h1>
     <ul id="list" class="spin">
         <% feeds.forEach(feed => {
+            let words = feed.items[0]['content'].split(' ')
+            let final = '...'
+            if (words.length >= 4) {
+                final = `${words[0]} ${words[1]} ${words[2]} ${words[3]} ${words[4]} ${words[5]}...`
+            }
             let d = new Date(feed.items[0]['pubDate'])
         %>
         <div class="ring orbit-<%= blogRegistry[feed.feedUrl] %>">
         <li class="listing">
-            <a href="<%= feed.link %>"><%= feed.title %></a>
-            <span class="author">by <%= blogRegistry[feed.feedUrl] %></span>
-            <p>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></p>
+            <p class="author"><%= blogRegistry[feed.feedUrl] %>💭:</p>
+            <a id="target" href="<%= feed.link %>"><%- final %></a>
         </li>
         </div>
         <% });%>

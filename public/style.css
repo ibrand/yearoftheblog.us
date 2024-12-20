@@ -21,6 +21,7 @@ p {
     padding: var(--page-gutter);
 }
 
+/* Lots of borrowing from: https://codepen.io/alandunning/pen/bNNRvQ */
 .spin {
     width: calc(var(--ring-diameter)*1px);
     height: calc(var(--ring-diameter)*1px);
@@ -30,6 +31,7 @@ p {
     left: calc((var(--ring-diameter)/2)*-1px);
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
     border-radius: 100%;
+    margin-top: 60px;
 }
 
 /* these are the spinning elements */
