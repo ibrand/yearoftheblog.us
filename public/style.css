@@ -8,7 +8,7 @@
 .ring {
     width: 60vh;
     height: 60vh;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     display:grid;
     align-content: space-between;
     justify-content: space-evenly;
@@ -16,9 +16,12 @@
     animation: spin 300s linear infinite;
     left: -18vw;
     position: relative;
+    /* background: rgb(2,0,36); */
+    /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(92,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+    background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
 }
 
-.item {
+.listing {
     width: 100%;
     height: 30px;
     margin-left: 95%;
