@@ -11,12 +11,6 @@ body {
 
 a {
     color: goldenrod;
-    display: inline-block;
-    position: relative;
-    z-index: 1;
-    padding: 2em;
-    margin: -2em;
-    box-sizing: content-box;
 }
 
 p {
@@ -25,8 +19,12 @@ p {
     margin: 0;
 }
 
+h2 {
+    margin-bottom: 0px;
+}
+
 ol {
-    padding: 20px;
+    padding: 0px 20px;
 }
 
 .container {
@@ -84,19 +82,22 @@ ol {
     list-style: none;
 }
 
+.listing a {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 1em 2em 2em 2em;
+    margin: -2em;
+    box-sizing: content-box;
+}
+
 .list {
     padding: 5px;
     list-style: none;
 }
 
-.list::before {
-    background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
-    width: var(--page-gutter);
-    height: 80%;
-    content: '';
-    position: absolute;
-    padding: 0px;
-    left: -10px;
+.list li::before {
+    content: '📝 ';
 }
 
 .list .listing {

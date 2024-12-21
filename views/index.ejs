@@ -10,7 +10,18 @@
 <body>
 <div class="container">
     <h1>Year of the Blog</h1>
-    
+    <h2>Participants</h2>
+    <ul class="list">
+        <% feeds.forEach(feed => {
+            let d = new Date(feed.items[0]['pubDate'])
+        %>
+        <li class="listing">
+            <a href="<%= feed.link %>"><%= feed.title %></a>
+            <span>by <%= blogRegistry[feed.feedUrl] %></span>
+            <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
+        </li>
+        <%});%>
+    </ul>
     <h2>Values / Rules:</h2>
     <ol>
         <li><p>Consistency in practice (Write weekly)</p></li>
@@ -25,12 +36,11 @@
             if (words.length >= 4) {
                 final = `${words[0]} ${words[1]} ${words[2]} ${words[3]} ${words[4]} ${words[5]}...`
             }
-            let d = new Date(feed.items[0]['pubDate'])
         %>
         <div class="ring orbit-<%= blogRegistry[feed.feedUrl] %>">
         <li class="listing">
             <p class="author"><%= blogRegistry[feed.feedUrl] %>💭:</p>
-            <a id="target" href="<%= feed.link %>"><%- final %></a>
+            <a id="target" href="<%= feed.items[0]['link'] %>"><%- final %></a>
         </li>
         </div>
         <% });%>
