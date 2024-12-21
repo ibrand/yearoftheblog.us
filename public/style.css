@@ -136,11 +136,11 @@ section {
 /* ---------- Animation ---------- */
 @-webkit-keyframes spin-right {
     100% {
-      -webkit-transform: rotate(460deg);
-      -moz-transform: rotate(460deg);
-      -ms-transform: rotate(460deg);
-      -o-transform: rotate(460deg);
-      transform: rotate(460deg);
+      -webkit-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 
