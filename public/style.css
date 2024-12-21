@@ -158,7 +158,7 @@ section {
     }
 
     .spin {
-        bottom: calc((var(--ring-diameter)*.5)*-1vw);
+        bottom: calc((var(--ring-diameter)*.7)*-1vw);
         left: 0;
     }
 
@@ -169,6 +169,6 @@ section {
 
     .spinner-bg {
         background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 32%);
-        bottom: 0px;
+        bottom: -10px;
     }
   }
