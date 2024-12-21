@@ -1,16 +1,20 @@
 :root {
     --ring-diameter: 100;
-    --page-gutter: 30px;
+    --page-gutter: 32px;
 }
 
 body {
     margin: 0px;
     background: rgba(0,3,74,1);
-    color: white;
+    color: rgb(219, 255, 254);
+    font-family:monospace;
+    font-size: 14px;
+    text-wrap: pretty;
+    line-height: 1.4;
 }
 
 a {
-    color: goldenrod;
+    color: #FAC0FF;
 }
 
 p {
@@ -19,22 +23,48 @@ p {
     margin: 0;
 }
 
+h1 {
+    margin-top: 0px;
+}
+
 h2 {
-    margin-bottom: 0px;
+    font-size: 20px;
+    margin-bottom: 4px;
 }
 
 ol {
-    padding: 0px 20px;
+    margin-top: 0px;
+    padding: 0px 24px;
+}
+
+ul {
+    margin-top: 0px;
+}
+
+li {
+    margin-bottom: 4px;
+}
+
+section {
+    padding-bottom: 10px;
 }
 
 .container {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     padding: var(--page-gutter);
     box-sizing: border-box;
-    margin-bottom: 200px;
+}
+
+.conversation-container {
+    margin-bottom: 60vh;
+    width: 60%;
+}
+
+.conversation-container p {
+    margin-bottom: 20px;
 }
 
 /* Lots of borrowing from: https://codepen.io/alandunning/pen/bNNRvQ */
@@ -43,15 +73,14 @@ ol {
     height: calc(var(--ring-diameter)*1vw);
     padding: 0;
     position: fixed;
-    bottom: calc((var(--ring-diameter)*.8)*-1vw);
-    /* left: calc((var(--ring-diameter)/2)*-1vw); */
+    bottom: calc((var(--ring-diameter)*.9)*-1vw);
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
     border-radius: 100%;
     margin-top: 60px;
 }
 
 .spinner-bg {
-    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 10%);
+    background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 12%);
     width: calc(var(--ring-diameter)* 1vw);
     height: calc(var(--ring-diameter)* 1vw);
     padding: 0;
@@ -63,7 +92,7 @@ ol {
 /* these are the spinning elements */
 .spin .ring {
     position: absolute;
-    top: 135px;
+    top: 120px;
     left: 0;
     width: calc(var(--ring-diameter)*1vw);
     height: calc(var(--ring-diameter)*1vw);
@@ -115,7 +144,19 @@ ol {
     }
   }
 
+  @media only screen and (max-width: 1000px) {
+    .spin .ring {
+        top: 25px;
+    }
+  }
+
+
   @media only screen and (max-width: 800px) {
+    .conversation-container {
+        margin-bottom: 40vh;
+        width: 100%;
+    }
+
     .spin {
         bottom: calc((var(--ring-diameter)*.5)*-1vw);
         left: 0;
@@ -123,11 +164,11 @@ ol {
 
     .spin .ring {
         transform: rotate(-78deg);
-        top: 0;
+        top: -25px;
     }
 
     .spinner-bg {
-        background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 30%);
+        background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 32%);
         bottom: 0px;
     }
   }

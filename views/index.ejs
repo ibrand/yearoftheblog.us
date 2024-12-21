@@ -10,24 +10,34 @@
 <body>
 <div class="container">
     <h1>Year of the Blog</h1>
-    <h2>Participants</h2>
-    <ul class="list">
-        <% feeds.forEach(feed => {
-            let d = new Date(feed.items[0]['pubDate'])
-        %>
-        <li class="listing">
-            <a href="<%= feed.link %>"><%= feed.title %></a>
-            <span>by <%= blogRegistry[feed.feedUrl] %></span>
-            <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
-        </li>
-        <%});%>
-    </ul>
-    <h2>Values / Rules:</h2>
-    <ol>
-        <li><p>Consistency in practice (Write weekly)</p></li>
-        <li><p>Be generous with ourselves (5 sick days)</p></li>
-        <li><p>A post has meaning even if no one is there to read it (write for yourself)</p></li>
-    </ol>
+    <section>
+        <h2>Participants</h2>
+        <ul class="list">
+            <% feeds.forEach(feed => {
+                let d = new Date(feed.items[0]['pubDate'])
+            %>
+            <li>
+                <a href="<%= feed.link %>"><%= feed.title %></a>
+                <span>by <%= blogRegistry[feed.feedUrl] %></span>
+                <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
+            </li>
+            <%});%>
+        </ul>
+    </section>
+    <section>
+        <h2>Rules / Values</h2>
+        <ol>
+            <li><p>Consistency in practice (Write weekly)</p></li>
+            <li><p>Be generous with ourselves (5 sick days)</p></li>
+            <li><p>A post has meaning even if no one is there to read it (write for yourself)</p></li>
+        </ol>
+    </section>
+    <section>
+        <h2>Read more about the origins of this project...</h2>
+        <div class="conversation-container">
+TBD
+        </div>
+    </section>
     <div class="spinner-bg">
     <ul id="list" class="spin">
         <% feeds.forEach(feed => {
@@ -39,7 +49,7 @@
         %>
         <div class="ring orbit-<%= blogRegistry[feed.feedUrl] %>">
         <li class="listing">
-            <p class="author"><%= blogRegistry[feed.feedUrl] %>💭:</p>
+            <p class="author"><%= blogRegistry[feed.feedUrl] %> 💭:</p>
             <a id="target" href="<%= feed.items[0]['link'] %>"><%- final %></a>
         </li>
         </div>
