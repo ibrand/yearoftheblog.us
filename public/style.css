@@ -13,12 +13,18 @@ p {
     margin: 0;
 }
 
+ol {
+    padding: 20px;
+}
+
 .container {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     padding: var(--page-gutter);
+    box-sizing: border-box;
+    /* margin-bottom: 200px; */
 }
 
 /* Lots of borrowing from: https://codepen.io/alandunning/pen/bNNRvQ */
@@ -34,10 +40,20 @@ p {
     margin-top: 60px;
 }
 
+.spinner-bg {
+    background-image: linear-gradient( rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    width: calc(var(--ring-diameter)* 1vw);
+    height: calc(var(--ring-diameter)* 1vw);
+    padding: 0;
+    position: fixed;
+    bottom: calc((var(--ring-diameter)*.7)*-1vw);
+    left: 0;
+}
+
 /* these are the spinning elements */
 .spin .ring {
     position: absolute;
-    top: 130px;
+    top: 135px;
     left: 0;
     width: calc(var(--ring-diameter)*1vw);
     height: calc(var(--ring-diameter)*1vw);
@@ -95,5 +111,14 @@ p {
     .spin .ring {
         transform: rotate(-78deg);
         top: 0;
+    }
+
+    .spinner-bg {
+        background-image: linear-gradient( rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        width: calc(var(--ring-diameter)* 1vw);
+        padding: 0;
+        position: fixed;
+        bottom: -90px;
+        left: 0;
     }
   }
