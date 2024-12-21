@@ -37,7 +37,7 @@ p {
 /* these are the spinning elements */
 .spin .ring {
     position: absolute;
-    top: 0;
+    top: 130px;
     left: 0;
     width: calc(var(--ring-diameter)*1vw);
     height: calc(var(--ring-diameter)*1vw);
@@ -86,7 +86,7 @@ p {
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .spin {
         bottom: calc((var(--ring-diameter)*.5)*-1vw);
         left: 0;
@@ -94,5 +94,6 @@ p {
 
     .spin .ring {
         transform: rotate(-78deg);
+        top: 0;
     }
   }
