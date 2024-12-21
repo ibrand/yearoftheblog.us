@@ -10,6 +10,12 @@
 <body>
 <div class="container">
     <h1>Year of the Blog</h1>
+    <h2>Values (/ the rules):</h2>
+    <ol>
+        <li>Consistency in practice (Write weekly)</li>
+        <li>Be generous with ourselves (5 sick days)</li>
+        <li>A post has meaning even if no one is there to read it (write for yourself, don't aim for "content production")</li>
+    </ol>
     <ul id="list" class="spin">
         <% feeds.forEach(feed => {
             let words = feed.items[0]['content'].split(' ')

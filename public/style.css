@@ -1,5 +1,5 @@
 :root {
-    --ring-diameter: 400;
+    --ring-diameter: 100;
     --page-gutter: 30px;
 }
 
@@ -23,12 +23,12 @@ p {
 
 /* Lots of borrowing from: https://codepen.io/alandunning/pen/bNNRvQ */
 .spin {
-    width: calc(var(--ring-diameter)*1px);
-    height: calc(var(--ring-diameter)*1px);
+    width: calc(var(--ring-diameter)*1vw);
+    height: calc(var(--ring-diameter)*1vw);
     padding: 0;
-    position: relative;
-    top: 40px;
-    left: calc((var(--ring-diameter)/2)*-1px);
+    position: fixed;
+    bottom: calc((var(--ring-diameter)*.8)*-1vw);
+    /* left: calc((var(--ring-diameter)/2)*-1vw); */
     background: radial-gradient(84.11% 84.11% at 89.41% 25.69%, #FAC0FF 0%, #553CBB 100%);
     border-radius: 100%;
     margin-top: 60px;
@@ -39,8 +39,8 @@ p {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(var(--ring-diameter)*1px);
-    height: calc(var(--ring-diameter)*1px);
+    width: calc(var(--ring-diameter)*1vw);
+    height: calc(var(--ring-diameter)*1vw);
     border-radius: 100%;
     transform: rotate(-30deg);
     -webkit-animation: spin-right 100s linear infinite;
@@ -78,10 +78,21 @@ p {
 /* ---------- Animation ---------- */
 @-webkit-keyframes spin-right {
     100% {
-      -webkit-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -ms-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
+      -webkit-transform: rotate(460deg);
+      -moz-transform: rotate(460deg);
+      -ms-transform: rotate(460deg);
+      -o-transform: rotate(460deg);
+      transform: rotate(460deg);
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .spin {
+        bottom: calc((var(--ring-diameter)*.5)*-1vw);
+        left: 0;
+    }
+
+    .spin .ring {
+        transform: rotate(-78deg);
     }
   }

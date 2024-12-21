@@ -1,7 +1,7 @@
 const blogsListings = document.getElementsByClassName("listing")
 const orbitRings = document.getElementsByClassName("ring")
 const list = document.getElementById("list")
-const DELAY_BETWEEN_LISTINGS_IN_SECONDS = 15;
+const DELAY_BETWEEN_LISTINGS_IN_SECONDS = 10;
 
 let counter = 0;
 Array.from(blogsListings).forEach(blogListing => {
