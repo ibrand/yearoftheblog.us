@@ -22,9 +22,16 @@ app.get("/", (req, res) => {
     });
 
     const blogRssUrls = Object.keys(blogRegistry)
-    const promises = blogRssUrls.map((url) =>parser.parseURL(url))
+    const promises = blogRssUrls.map((url) => parser.parseURL(url))
 
     Promise.all(promises).then(feeds => {
+        feeds.forEach( feed => {
+            if (feed['items'] && feed['items'].length) {
+                let contentSnippet = feed['items'][0]['contentSnippet']
+                if (contentSnippet == undefined) { return }
+                feed['currentSnippet'] = contentSnippet?.slice(0,30) + '...'
+            }
+        })
         res.render("index", {'feeds': feeds, 'blogRegistry': blogRegistry});
     });
 });

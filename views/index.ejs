@@ -61,17 +61,13 @@
     <div class="spinner-bg">
     <ul id="list" class="spin">
         <% feeds.forEach(feed => {
-            if (!feed.items[0]) { return; }
-            let words = feed.items[0]['content'].split(' ')
-            let final = '...'
-            if (words.length >= 4) {
-                final = `${words[0]} ${words[1]} ${words[2]} ${words[3]} ${words[4]} ${words[5]}...`
-            }
+            let author = blogRegistry[feed.feedUrl]
+            if (!feed.currentSnippet || !author) { return; }
         %>
-        <div class="ring orbit-<%= blogRegistry[feed.feedUrl] %>">
+        <div class="ring orbit-<%= author %>">
         <li class="listing">
-            <p class="author"><%= blogRegistry[feed.feedUrl] %> 💭:</p>
-            <a id="target" href="<%= feed.items[0]['link'] %>"><%- final %></a>
+            <p class="author"><%= author %> 💭:</p>
+            <p><a id="target" href="<%= feed.items[0]['link'] %>"><p><%= feed.currentSnippet %></p></a></p>
         </li>
         </div>
         <% });%>
