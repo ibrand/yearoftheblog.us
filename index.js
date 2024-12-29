@@ -17,22 +17,24 @@ app.use(express.static(__dirname + '/public'));
 
 // Handling the get request
 app.get("/", (req, res) => {
-    res.set({
-        "Allow-access-Allow-Origin": "*",
-    });
+    // res.set({
+    //     "Allow-access-Allow-Origin": "*",
+    // });
 
     const blogRssUrls = Object.keys(blogRegistry)
-    const promises = blogRssUrls.map((url) => parser.parseURL(url))
 
-    Promise.all(promises).then(feeds => {
-        feeds.forEach( feed => {
+    const promises = blogRssUrls.map((url) => parser.parseURL(url))
+    Promise.allSettled(promises).then(feeds => {
+        // filter out the failed promises and get the feed object out of the promise wrapper
+        let viableFeeds = feeds.filter((feedPromise) => feedPromise.status == 'fulfilled').map((feedPromise) => feedPromise.value)
+        viableFeeds.forEach( feed => {
             if (feed['items'] && feed['items'].length) {
                 let contentSnippet = feed['items'][0]['contentSnippet']
                 if (contentSnippet == undefined) { return }
                 feed['currentSnippet'] = contentSnippet?.slice(0,30) + '...'
             }
         })
-        res.render("index", {'feeds': feeds, 'blogRegistry': blogRegistry});
+        res.render("index", {'feeds': viableFeeds, 'blogRegistry': blogRegistry});
     });
 });
 
