@@ -5,7 +5,6 @@ To add yourself or (someone) to the directory, add your rss feed link as the key
 
 ## TODO
 - Fix the mobile scroll
-- Remove the click animation on the ring
 - Try moving the RSS links to RSS instead of atom
 - Fix the spinner animation so that the speed matches up to 5 or so blogs and then randomly choose which blogs get to go in on refresh (probably template side)
 - Maybe make a roundup newsletter weekly that people can subscribe to that sends all of the blogs that updated that week

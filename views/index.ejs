@@ -59,7 +59,7 @@
         </div>
     </section>
     <div class="spinner-bg">
-    <ul id="list" class="spin">
+    <ul class="spin">
         <% feeds.forEach(feed => {
             let author = blogRegistry[feed.feedUrl]
             if (!feed.currentSnippet || !author) { return; }
