@@ -82,7 +82,7 @@ section {
 .spinner-bg {
     background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 12%);
     width: calc(var(--ring-diameter)* 1vw);
-    height: calc(var(--ring-diameter)* 1vw);
+    height: calc(var(--ring-diameter) * 1vw);
     padding: 0;
     position: fixed;
     bottom: calc((var(--ring-diameter)*.7)*-1vw);
@@ -158,17 +158,18 @@ section {
     }
 
     .spin {
-        bottom: calc((var(--ring-diameter)*.7)*-1vw);
+        bottom: calc((var(--ring-diameter)*.8)*-1vw);
         left: 0;
     }
 
     .spin .ring {
         transform: rotate(-78deg);
-        top: -25px;
+        top: -15px;
     }
 
     .spinner-bg {
         background: linear-gradient(rgba(255,255,255,0) 0%, rgba(0,3,74,1) 32%);
+        height: 32vh;
         bottom: -10px;
     }
   }
