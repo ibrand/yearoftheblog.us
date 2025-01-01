@@ -1,7 +1,13 @@
 # yearoftheblog.us
 Year of The Blog Directory Site
 
-To add yourself or (someone) to the directory, add your rss feed link as the key and the name you'd like to be seen as to the value to the config object.
+## Contributing
+To add yourself or (someone) to the directory, add your atom or rss feed link as the key and the name you'd like to be seen as to the value to the config object.
+
+To run locally:
+1. `git clone` the repo onto your machine
+2. Run `npm install` to download all necessary packages
+3. Run `npm run dev` to start the server and then visit `127.0.0.1:80`
 
 ## TODO
 - Try moving the RSS links to RSS instead of atom
