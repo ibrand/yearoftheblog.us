@@ -17,10 +17,6 @@ app.use(express.static(__dirname + '/public'));
 
 // Handling the get request
 app.get("/", (req, res) => {
-    // res.set({
-    //     "Allow-access-Allow-Origin": "*",
-    // });
-
     const blogRssUrls = Object.keys(blogRegistry)
 
     const promises = blogRssUrls.map((url) => parser.parseURL(url))
