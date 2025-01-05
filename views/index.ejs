@@ -16,7 +16,7 @@
             <% feeds.forEach(feed => {%>
             <li>
                 <a href="<%= feed.link %>"><%= feed.title %></a>
-                <span>by <%= blogRegistry[feed.feedUrl] %></span>
+                <span>by <%= feed.chosenName %></span>
                 <% if (feed.items[0]) {%>
                 <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>
                 <%}%>
@@ -61,7 +61,7 @@
     <div class="spinner-bg">
     <ul class="spin">
         <% feeds.forEach(feed => {
-            let author = blogRegistry[feed.feedUrl]
+            let author = feed.chosenName
             if (!feed.currentSnippet || !author) { return; }
         %>
         <div class="ring orbit-<%= author %>">
