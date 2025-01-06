@@ -15,7 +15,7 @@
         <ul class="list">
             <% feeds.forEach(feed => {%>
             <li>
-                <a href="<%= feed.link %>"><%= feed.title %></a>
+                <a href="<%= feed.blogUrl %>"><%= feed.title %></a>
                 <span>by <%= feed.chosenName %></span>
                 <% if (feed.items[0]) {%>
                 <span>last updated <%= new Date(feed.items[0]['pubDate']).toLocaleDateString('en-US', {timeZone: 'UTC'}) %></span>

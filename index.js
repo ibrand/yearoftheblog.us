@@ -15,13 +15,19 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
+const blogUrls = Object.keys(blogRegistry)
+let blogRssUrls = []
+let authors = []
+
+for (let entry in blogRegistry) {
+    blogRssUrls.push(blogRegistry[entry]['feedLink']);
+    authors.push(blogRegistry[entry]['chosenName']);
+}
+
 // Handling the get request
 app.get("/", (req, res) => {
-    const blogRssUrls = Object.keys(blogRegistry)
-    const authors = Object.values(blogRegistry)
-
     const promises = blogRssUrls.map((url) => parser.parseURL(url))
-    Promise.allSettled(promises).then(feeds => {
+    Promise.allSettled(promises).then( (feeds, index) => {
         // filter out the failed promises and get the feed object out of the promise wrapper
         let viableFeeds = feeds.filter((feedPromise) => feedPromise.status == 'fulfilled').map((feedPromise) => feedPromise.value)
         viableFeeds.forEach( (feed, index) => {
@@ -31,12 +37,14 @@ app.get("/", (req, res) => {
                 feed['currentSnippet'] = contentSnippet?.slice(0,30) + '...'
             }
 
-            // TODO: This is still relying on all the feeds working because otherwise the author
-            // index gets misaligned with the feed index. I haven't yet found a good way to solve this though
+            // TODO: This is still relying on all the feeds working because otherwise the
+            // index gets misaligned with the feed index. This is because failed promises are filtered out right now.
+            // I haven't yet found a good way to solve this though
             feed['chosenName'] = authors[index]
+            feed['blogUrl'] = blogUrls[index]
         })
 
-        res.render("index", {'feeds': viableFeeds, 'authors': authors});
+        res.render("index", {'feeds': viableFeeds, 'blogRegistry': blogRegistry, 'authors': authors});
     });
 });
 
