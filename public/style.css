@@ -87,6 +87,7 @@ section {
     position: fixed;
     bottom: calc((var(--ring-diameter)*.7)*-1vw);
     left: 0;
+    pointer-events: none;
 }
 
 /* these are the spinning elements */
@@ -100,6 +101,7 @@ section {
     transform: rotate(-30deg);
     -webkit-animation: spin-right 100s linear infinite;
     animation: spin-right 100s linear infinite;
+    pointer-events: auto;
 }
 
 .spin .listing {
