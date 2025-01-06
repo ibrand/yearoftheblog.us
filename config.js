@@ -43,6 +43,10 @@ const registry = {
     "https://malavikainmotion.com/": {
         "feedLink": "https://malavikainmotion.com/feed/index.xml/",
         "chosenName": "Malavika"
+    },
+    "https://yearofcreativitydandj.blogspot.com": {
+        "feedLink": "https://yearofcreativitydandj.blogspot.com/feeds/posts/default/",
+        "chosenName": "J"
     }
 }
 
