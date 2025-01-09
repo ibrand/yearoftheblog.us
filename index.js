@@ -18,6 +18,7 @@ app.use(express.static(__dirname + '/public'));
 const blogUrls = Object.keys(blogRegistry)
 let blogRssUrls = []
 let authors = []
+const NUMBER_OF_FEATURED_FEEDS = 5
 
 for (let entry in blogRegistry) {
     blogRssUrls.push(blogRegistry[entry]['feedLink']);
@@ -26,15 +27,25 @@ for (let entry in blogRegistry) {
 
 // Handling the get request
 app.get("/", (req, res) => {
+    // Choose 5 feeds to feature in the spinner at the bottom of the page per reload
+    // TODO: make this random, so it's not always the first 5 in the list
+    // We're not actually using this in the template yet because it's not random
+    let featuredFeeds = []
+
     const promises = blogRssUrls.map((url) => parser.parseURL(url))
     Promise.allSettled(promises).then( (feeds, index) => {
         // filter out the failed promises and get the feed object out of the promise wrapper
         let viableFeeds = feeds.filter((feedPromise) => feedPromise.status == 'fulfilled').map((feedPromise) => feedPromise.value)
+
         viableFeeds.forEach( (feed, index) => {
             if (feed['items'] && feed['items'].length) {
                 let contentSnippet = feed['items'][0]['contentSnippet']
                 if (contentSnippet == undefined) { return }
                 feed['currentSnippet'] = contentSnippet?.slice(0,30) + '...'
+
+                if (featuredFeeds.length <= NUMBER_OF_FEATURED_FEEDS) {
+                    featuredFeeds.push(feed)
+                }
             }
 
             // TODO: This is still relying on all the feeds working because otherwise the
@@ -44,7 +55,7 @@ app.get("/", (req, res) => {
             feed['blogUrl'] = blogUrls[index]
         })
 
-        res.render("index", {'feeds': viableFeeds, 'blogRegistry': blogRegistry, 'authors': authors});
+        res.render("index", {'feeds': viableFeeds, 'blogRegistry': blogRegistry, 'authors': authors, 'featuredFeeds': featuredFeeds});
     });
 });
 
