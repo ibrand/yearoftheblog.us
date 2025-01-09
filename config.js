@@ -3,7 +3,6 @@ const registry = {
         "feedLink": "https://ohitsnice.bearblog.dev/atom/",
         "chosenName": "Loney"
     },
-
     "https://tinyflourish.bearblog.dev": {
         "feedLink": "https://tinyflourish.bearblog.dev/atom/",
         "chosenName": "M"
@@ -46,6 +45,10 @@ const registry = {
     },
     "https://yearofcreativitydandj.blogspot.com": {
         "feedLink": "https://yearofcreativitydandj.blogspot.com/feeds/posts/default/",
+        "chosenName": "J"
+    },
+    "https://practicing-vulnerability.blogspot.com": {
+        "feedLink": "https://practicing-vulnerability.blogspot.com/feeds/posts/default/",
         "chosenName": "J"
     }
 }
