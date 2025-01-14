@@ -39,7 +39,7 @@ const registry = {
         "feedLink": "https://k0lk3r.blogspot.com/feeds/posts/default/",
         "chosenName": "K0lk3r"
     },
-    "https://malavikainmotion.com/": {
+    "https://malavikainmotion.com/tag/year-of-the-blog/": {
         "feedLink": "https://malavikainmotion.com/feed/index.xml/",
         "chosenName": "Malavika"
     },
