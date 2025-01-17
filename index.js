@@ -16,14 +16,21 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 const blogUrls = Object.keys(blogRegistry)
-let blogRssUrls = []
-let authors = []
 const NUMBER_OF_FEATURED_FEEDS = 5
 
-for (let entry in blogRegistry) {
-    blogRssUrls.push(blogRegistry[entry]['feedLink']);
-    authors.push(blogRegistry[entry]['chosenName']);
-}
+const sortByLatestDate = (feedA, feedB) => {
+    if (!feedA["items"] || !feedA["items"].length) {
+      return 1;
+    }
+
+    if (!feedB["items"] || !feedB["items"].length) {
+      return -1;
+    }
+
+    return (
+      new Date(feedB.items[0]["pubDate"]) - new Date(feedA.items[0]["pubDate"])
+    );
+  };
 
 // Handling the get request
 app.get("/", (req, res) => {
@@ -32,10 +39,18 @@ app.get("/", (req, res) => {
     // We're not actually using this in the template yet because it's not random
     let featuredFeeds = []
 
-    const promises = blogRssUrls.map((url) => parser.parseURL(url))
+    const promises = blogUrls.map(async (url) => {
+        feed = await parser.parseURL(blogRegistry[url]["feedLink"]);
+        return {
+          blogUrl: url,
+          chosenName: blogRegistry[url]["chosenName"],
+          ...feed,
+        };
+    });
+
     Promise.allSettled(promises).then( (feeds, index) => {
         // filter out the failed promises and get the feed object out of the promise wrapper
-        let viableFeeds = feeds.filter((feedPromise) => feedPromise.status == 'fulfilled').map((feedPromise) => feedPromise.value)
+        let viableFeeds = feeds.filter((feedPromise) => feedPromise.status == 'fulfilled').map((feedPromise) => feedPromise.value).sort(sortByLatestDate)
 
         viableFeeds.forEach( (feed, index) => {
             if (feed['items'] && feed['items'].length) {
@@ -47,15 +62,9 @@ app.get("/", (req, res) => {
                     featuredFeeds.push(feed)
                 }
             }
-
-            // TODO: This is still relying on all the feeds working because otherwise the
-            // index gets misaligned with the feed index. This is because failed promises are filtered out right now.
-            // I haven't yet found a good way to solve this though
-            feed['chosenName'] = authors[index]
-            feed['blogUrl'] = blogUrls[index]
         })
 
-        res.render("index", {'feeds': viableFeeds, 'blogRegistry': blogRegistry, 'authors': authors, 'featuredFeeds': featuredFeeds});
+        res.render("index", {'feeds': viableFeeds, 'featuredFeeds': featuredFeeds});
     });
 });
 
