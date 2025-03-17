@@ -48,9 +48,13 @@ const registry = {
         "feedLink": "https://practicing-vulnerability.blogspot.com/feeds/posts/default/",
         "chosenName": "J"
     },
-  "https://moosetoons.substack.com/": {
+    "https://moosetoons.substack.com/": {
         "feedLink": "https://moosetoons.substack.com/feed",
         "chosenName": "Cecilia"
+    },
+    "https://ascendantnewyork.substack.com/": {
+        "feedLink": "https://ascendantnewyork.substack.com/feed",
+        "chosenName": "Cormac"
     }
 }  
 
