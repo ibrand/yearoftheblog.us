@@ -23,10 +23,7 @@ const registry = {
         "feedLink": "https://newsletter.stephenthomaswriter.com/feed",
         "chosenName": "Steve"
     },
-    "https://indiancooking.substack.com": {
-        "feedLink": "https://indiancooking.substack.com/feed/",
-        "chosenName": "K"
-    },
+
     "https://sillygoose.bearblog.dev": {
         "feedLink": "https://sillygoose.bearblog.dev/atom/",
         "chosenName": "Tanvi"
@@ -50,7 +47,13 @@ const registry = {
     "https://practicing-vulnerability.blogspot.com": {
         "feedLink": "https://practicing-vulnerability.blogspot.com/feeds/posts/default/",
         "chosenName": "J"
+    },
+  "https://moosetoons.substack.com/": {
+        "feedLink": "https://moosetoons.substack.com/feed",
+        "chosenName": "Cecilia"
     }
-}
+}  
+
+
 
 module.exports = registry
