@@ -1,7 +1,7 @@
-const RSS = require("rss");
-const Parser = require("rss-parser");
+const RSS = require('rss');
+const Parser = require('rss-parser');
 
-const blogRegistry = require("../config");
+const blogRegistry = require('../config');
 
 /** Max items for the combined RSS feed. */
 const MAX_FEED_ITEMS = 50;
@@ -10,7 +10,7 @@ const parser = new Parser();
 
 async function combinedRSSFeedRoute(req, res) {
   const blogUrls = Object.keys(blogRegistry);
-  const siteUrl = `${req.protocol}://${req.get("host")}`;
+  const siteUrl = `${req.protocol}://${req.get('host')}`;
 
   const feedUrl = `${siteUrl}/rss.xml`;
 
@@ -19,9 +19,9 @@ async function combinedRSSFeedRoute(req, res) {
     const listOfFeedItemResults = await Promise.allSettled(
       blogUrls.map(async (url) => {
         try {
-          const feed = await parser.parseURL(blogRegistry[url]["feedLink"]);
+          const feed = await parser.parseURL(blogRegistry[url]['feedLink']);
 
-          const author = blogRegistry[url]["chosenName"];
+          const author = blogRegistry[url]['chosenName'];
           const blogUrl = url;
           const publishedAt = new Date(feed.items[0].pubDate);
 
@@ -52,12 +52,12 @@ async function combinedRSSFeedRoute(req, res) {
     // 5. Create the RSS feed object, and add all the items to it.
     const combinedFeed = new RSS({
       description:
-        "Latest posts from all participants in the Year of the Blog project.",
+        'Latest posts from all participants in the Year of the Blog project.',
       feed_url: feedUrl,
-      language: "en",
+      language: 'en',
       pubDate: new Date(), // Feed generated time
       site_url: siteUrl,
-      title: "Year of the Blog - Combined Feed",
+      title: 'Year of the Blog - Combined Feed',
       ttl: 60, // Cache time in minutes
     });
     for (const {
@@ -65,12 +65,12 @@ async function combinedRSSFeedRoute(req, res) {
       metadata: { author, blogUrl, publishedAt },
     } of latestFeedItems) {
       combinedFeed.item({
-        author: author || "Unknown Author",
+        author: author || 'Unknown Author',
         date: publishedAt,
         description:
-          item.contentSnippet || item.content || "No description available.",
+          item.contentSnippet || item.content || 'No description available.',
         guid: item.id,
-        title: item.title || "Untitled Post",
+        title: item.title || 'Untitled Post',
         url: item.id,
       });
     }
@@ -78,11 +78,11 @@ async function combinedRSSFeedRoute(req, res) {
     // 6. Generate XML and send response.
     const xml = combinedFeed.xml({ indent: true });
 
-    res.type("application/rss+xml");
+    res.type('application/rss+xml');
     res.send(xml);
   } catch (error) {
-    console.error("Error generating combined RSS feed:", error);
-    res.status(500).send("Error generating RSS feed");
+    console.error('Error generating combined RSS feed:', error);
+    res.status(500).send('Error generating RSS feed');
   }
 }
 
