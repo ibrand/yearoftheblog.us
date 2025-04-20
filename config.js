@@ -1,4 +1,11 @@
 const registry = {
+ 
+       "aestheticxlies.bearblog.dev": {
+        "feedLink": "aestheticxlies.bearblog.dev/atom/",
+        "chosenName": "LN"
+    },
+    
+    
     "https://ohitsnice.bearblog.dev": {
         "feedLink": "https://ohitsnice.bearblog.dev/atom/",
         "chosenName": "Loney"
