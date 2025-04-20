@@ -1,9 +1,12 @@
 // Importing modules
 const express = require("express");
 const rssParser = require('rss-parser');
-const blogRegistry = require('./config')
 
-const port = 80;
+const blogRegistry = require('./config');
+const { combinedRSSFeedRoute } = require('./routes/rss');
+
+
+const port = process.env.PORT || 80;
 const app = express();
 const parser = new rssParser();
 
@@ -68,8 +71,17 @@ app.get("/", (req, res) => {
     });
 });
 
+// --- Add the new RSS feed endpoint ---
+app.get("/rss.xml", combinedRSSFeedRoute);
+
 // Starting the server on the 80 port
-app.listen(port, () => {
+app.listen(port, (err) => {
+    if (err) {
+      console.error('There was an error starting the server:', err);
+
+      return;
+    }
+
     console.log(`The application started
                  successfully on port ${port}`);
 });
