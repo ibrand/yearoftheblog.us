@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+const path = require('path');
 const RSS = require('rss');
 const Parser = require('rss-parser');
 
@@ -23,12 +25,36 @@ async function combinedRSSFeedRoute(req, res) {
 
           const author = blogRegistry[url]['chosenName'];
           const blogUrl = url;
-          const publishedAt = new Date(feed.items[0].pubDate);
 
-          return feed.items.map((item) => ({
-            item,
-            metadata: { author, blogUrl, publishedAt },
-          }));
+          return feed.items.map((item) => {
+            let blogPostUrl = item.link || '';
+            const publishedAt = item.pubDate
+              ? new Date(item.pubDate)
+              : new Date();
+
+            // Sometimes, it seems that `item.link` is not a full URL, so we
+            // need to join it with the blog URL.
+            if (!blogPostUrl.startsWith('http')) {
+              blogPostUrl = path.join(blogUrl, blogPostUrl);
+            }
+
+            const stringToHash = `${blogPostUrl}::${publishedAt.toISOString()}`;
+            const guid = crypto
+              .createHash('sha256')
+              .update(stringToHash)
+              .digest('hex');
+
+            return {
+              item,
+              metadata: {
+                author,
+                blogPostUrl,
+                blogUrl,
+                publishedAt,
+                guid,
+              },
+            };
+          });
         } catch (err) {
           console.warn(`Failed to fetch or parse feed for "${url}"`, err);
 
@@ -44,7 +70,17 @@ async function combinedRSSFeedRoute(req, res) {
     const feedItems = listOfFeedItems.flat();
 
     // 2. Sort the feed items by publication date (newest first).
-    feedItems.sort((a, b) => b.metadata.publishedAt - a.metadata.publishedAt);
+    feedItems.sort((a, b) => {
+      const dateA =
+        a.metadata.publishedAt instanceof Date
+          ? a.metadata.publishedAt
+          : new Date(0);
+      const dateB =
+        b.metadata.publishedAt instanceof Date
+          ? b.metadata.publishedAt
+          : new Date(0);
+      return dateB - dateA;
+    });
 
     // 3. Limit the list of feed items.
     const latestFeedItems = feedItems.slice(0, MAX_FEED_ITEMS);
@@ -62,16 +98,16 @@ async function combinedRSSFeedRoute(req, res) {
     });
     for (const {
       item,
-      metadata: { author, blogUrl, publishedAt },
+      metadata: { author, publishedAt, blogPostUrl, guid },
     } of latestFeedItems) {
       combinedFeed.item({
         author: author || 'Unknown Author',
         date: publishedAt,
         description:
           item.contentSnippet || item.content || 'No description available.',
-        guid: item.id,
+        guid: guid,
         title: item.title || 'Untitled Post',
-        url: item.id,
+        url: blogPostUrl,
       });
     }
 
