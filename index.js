@@ -1,8 +1,9 @@
 // Importing modules
 const express = require("express");
 const rssParser = require('rss-parser');
-const blogRegistry = require('./config')
-const { combinedRSSFeedRoute } = require('./routes/rss')
+
+const blogRegistry = require('./config');
+const { combinedRSSFeedRoute } = require('./routes/rss');
 
 
 const port = process.env.PORT || 80;
