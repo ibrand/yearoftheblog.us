@@ -1,11 +1,8 @@
 const registry = {
- 
-       "aestheticxlies.bearblog.dev": {
-        "feedLink": "aestheticxlies.bearblog.dev/atom/",
+    "https://aestheticxlies.bearblog.dev": {
+        "feedLink": "https://aestheticxlies.bearblog.dev/atom/",
         "chosenName": "LN"
     },
-    
-    
     "https://ohitsnice.bearblog.dev": {
         "feedLink": "https://ohitsnice.bearblog.dev/atom/",
         "chosenName": "Loney"
@@ -30,7 +27,6 @@ const registry = {
         "feedLink": "https://newsletter.stephenthomaswriter.com/feed",
         "chosenName": "Steve"
     },
-
     "https://sillygoose.bearblog.dev": {
         "feedLink": "https://sillygoose.bearblog.dev/atom/",
         "chosenName": "Tanvi"
